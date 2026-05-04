@@ -9,12 +9,16 @@ model, vectorizer = train_model()
 while True:
     print("\n📰 Enter a news headline (or type 'exit' to stop):")
     user_input = input(">> ")
+    
     if user_input.lower() == "exit":
         print("👋 Exiting.")
         break
 
+    # Preprocess input
+    input_text = user_input.lower()
+
     # Transform input
-    input_tfidf = vectorizer.transform([user_input])
+    input_tfidf = vectorizer.transform([input_text])
 
     # Predict
     prediction = model.predict(input_tfidf)
